@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica</title>
+  <link rel="icon" type="image/x-icon" href="./assets/DH_Logo_Black.png">
+  <meta name="description" content="Digital House CTD | Proyecto integrador | FRONTEND II" />
+
+  <!-- ----------------------------- estilos CSS ----------------------------- -->
+  <link rel="stylesheet" href="./css/tasksStyles.css">
+
+  <!-- ------------------- libreria de iconos Fontawesome -------------------- -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ------------------------------ librerias ------------------------------ -->
+  <!-- Sweet Alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Animate on scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+  <!-- ------------------------- logica de la página ------------------------- -->
+  <script src="./scripts/odontologos.js"></script>
+  <script src="./scripts/pacientes.js"></script>
+
+</head>
+
+<body>
+
+  <!-- cabecera con barra de navegación -->
+  <header class="container">
+    <nav>
+      <h1>Clínica Odontológica</h1>
+
+      <div class="user-info">
+        <p>username</p>
+        <div class="user-image"></div>
+        <button id="closeApp"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- contenedor vacío para las que pasen a pendientes -->
+    <div>
+      <div class="header">
+        <h2>Odontólogos</h2>
+        <button type="submit" class="create_odontologo"><i class="fa-solid fa-pencil"></i> Crear Odontólogo</button>
+      </div>
+      <ul class="tareas-pendientes odontologo">
+
+      </ul>
+    </div>
+    
+    <div class="row">
+      <div style="display: none;" id="div_odontologo">
+          <form id="odontologo_form">
+              <div class="form-group">
+                  <label >Id:</label>
+                  <input type="text" class="form-control" id="id" readonly>
+              </div>
+              <div class="form-group">
+                  <label>Nombre:</label>
+                  <input type="text" class="form-control" placeholder="nombre" id="nombre">
+              </div>
+              <div class="form-group">
+                  <label>Apellido:</label>
+                  <input type="text" class="form-control" placeholder="apellido" id="apellido">
+              </div>
+              <div class="form-group">
+                  <label>Matrícula:</label>
+                  <input type="text" class="form-control" placeholder="matricula" id="matricula">
+              </div>
+
+
+              <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+          <div id="response" style="display:none; margin:10px">
+          </div>
+      </div>
+    </div>
+    <div>
+      <div class="header">
+        <h2>Pacientes</h2>
+        <button type="submit" class="create_paciente"><i class="fa-solid fa-pencil"></i> Crear Paciente</button>
+      </div>
+      <ul class="tareas-pendientes paciente">
+
+      </ul>
+    </div>
+    <div class="row">
+      <div style="display: none;" id="div_paciente">
+          <form id="paciente_form">
+              <div class="form-group">
+                  <label >Id:</label>
+                  <input type="text" class="form-control" id="id" readonly>
+              </div>
+              <div class="form-group">
+                  <label>Nombre:</label>
+                  <input type="text" class="form-control" placeholder="nombre" id="nombre">
+              </div>
+              <div class="form-group">
+                  <label>Apellido:</label>
+                  <input type="text" class="form-control" placeholder="apellido" id="apellido">
+              </div>
+              <div class="form-group">
+                  <label>DNI:</label>
+                  <input type="text" class="form-control" placeholder="dni" id="dni">
+              </div>
+              <div class="form-group">
+                <label >Ingreso:</label>
+                <input type="text" class="form-control" id="ingreso" readonly>
+              </div>
+              <div class="form-group">
+                  <label>Calle:</label>
+                  <input type="text" class="form-control" placeholder="calle" id="calle">
+              </div>
+              <div class="form-group">
+                  <label>Número:</label>
+                  <input type="text" class="form-control" placeholder="numero" id="numero">
+              </div>
+              <div class="form-group">
+                  <label>Localidad:</label>
+                  <input type="text" class="form-control" placeholder="localidad" id="localidad">
+              </div>
+              <div class="form-group">
+                  <label>Provincia:</label>
+                  <input type="text" class="form-control" placeholder="provincia" id="provincia">
+              </div>
+
+
+              <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+          <div id="response" style="display:none; margin:10px">
+          </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <footer>
+    <img src="./assets/DH_Logo_White.png" alt="">
+    <p>| Backend I </p>
+  </footer>
+</body>
+
+</html>
