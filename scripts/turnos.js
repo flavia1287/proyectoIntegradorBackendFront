@@ -14,7 +14,8 @@ window.addEventListener('load', function () {
   const urlOdontologos = 'http://localhost:8080/odontologos';
   const urlPacientes = 'http://localhost:8080/pacientes';
   const urlUsuario = 'http://localhost:8080/usuarios';
-  const token = JSON.parse(localStorage.user_id);
+  const user = JSON.parse(localStorage.user_id);
+  const token = JSON.parse(this.localStorage.jwt);
 
   const btnCerrarSesion = document.querySelector('#closeApp');
   const filtroO = document.querySelector('#filtro_odontologo');
@@ -68,7 +69,7 @@ window.addEventListener('load', function () {
       method: 'GET'
     };
     console.log("Consultando mi usuario...");
-    fetch(urlUsuario+'/'+token, settings)
+    fetch(urlUsuario+'/'+user, settings)
       .then(response => response.json())
       .then(data => {
         console.log("Email de usuario:");
@@ -86,7 +87,11 @@ window.addEventListener('load', function () {
 
   function consultarTurnos(reloadFilters) {
     const settings = {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+          'Origin': 'http://127.0.0.1:5500',
+          Authorization: token
+      }
     };
     console.log("Consultando turnos...");
     let url = urlTurnos;
@@ -200,7 +205,11 @@ window.addEventListener('load', function () {
         const url = `${urlTurnos}/${id}`
 
         const settings = {
-          method: 'GET'
+          method: 'GET',
+          headers: {
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
+          }
         }
         const form = document.querySelector('#div_turno');
         fetch(url,settings)
@@ -264,7 +273,11 @@ window.addEventListener('load', function () {
             const url = `${urlTurnos}/${id}`
 
             const settingsCambio = {
-              method: 'DELETE'
+              method: 'DELETE',
+              headers: {
+                  'Origin': 'http://127.0.0.1:5500',
+                  Authorization: token
+              }
             }
             fetch(url, settingsCambio)
               .then(response => {
@@ -317,6 +330,8 @@ window.addEventListener('load', function () {
           method: id ? 'PUT' : 'POST',
           headers: {
               'Content-Type': 'application/json',
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
           },
           body: JSON.stringify(turno)
         }
@@ -344,7 +359,11 @@ window.addEventListener('load', function () {
       //a cada boton de borrado le asignamos la funcionalidad
       boton.addEventListener('click', function (event) {
         const settings = {
-          method: 'GET'
+          method: 'GET',
+          headers: {
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
+          }
         }
         fetch(urlOdontologos, settings)
             .then(response => response.json())

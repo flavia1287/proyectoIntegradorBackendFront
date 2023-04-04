@@ -22,7 +22,8 @@ window.addEventListener('load', function () {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Origin': 'http://127.0.0.1:5500'
             }
         };
         //lanzamos la consulta de login a la API
@@ -56,6 +57,7 @@ window.addEventListener('load', function () {
                     //guardo en LocalStorage el objeto con el token
                     localStorage.setItem('user_role', JSON.stringify(data.rol));
                     localStorage.setItem('user_id', JSON.stringify(data.id));
+                    localStorage.setItem('jwt', JSON.stringify(data.jwt));
 
                     //redireccionamos a la página
                     if (data.rol == 'ROLE_ADMIN') {

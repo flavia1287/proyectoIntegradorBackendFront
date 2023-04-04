@@ -4,6 +4,7 @@ window.addEventListener('load', function () {
     AOS.init();
   
     const urlPacientes = 'http://localhost:8080/pacientes';
+    const token = JSON.parse(this.localStorage.jwt);
 
     consultarPacientes();
 
@@ -13,7 +14,11 @@ window.addEventListener('load', function () {
 
     function consultarPacientes() {
     const settings = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Origin': 'http://127.0.0.1:5500',
+            Authorization: token
+        }
     };
     console.log("Consultando pacientes...");
     fetch(urlPacientes, settings)
@@ -88,7 +93,11 @@ window.addEventListener('load', function () {
             const url = `${urlPacientes}/${id}`
 
             const settingsCambio = {
-              method: 'DELETE'
+              method: 'DELETE',
+              headers: {
+                  'Origin': 'http://127.0.0.1:5500',
+                  Authorization: token
+              }
             }
             fetch(url, settingsCambio)
               .then(response => {
@@ -126,7 +135,11 @@ window.addEventListener('load', function () {
         const payload = {};
 
         const settings = {
-          method: 'GET'
+          method: 'GET',
+          headers: {
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
+          }
         }
         const form = document.querySelector('#div_paciente');
         fetch(url,settings)
@@ -187,6 +200,8 @@ window.addEventListener('load', function () {
           method: id ? 'PUT' : 'POST',
           headers: {
               'Content-Type': 'application/json',
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
           },
           body: JSON.stringify(paciente)
         }

@@ -12,7 +12,8 @@ window.addEventListener('load', function () {
 
   const urlOdontologos = 'http://localhost:8080/odontologos';
   const urlUsuario = 'http://localhost:8080/usuarios';
-  const token = JSON.parse(localStorage.user_id);
+  const user = JSON.parse(localStorage.user_id);
+  const token = JSON.parse(localStorage.jwt);
 
   const btnCerrarSesion = document.querySelector('#closeApp');
 
@@ -56,7 +57,7 @@ window.addEventListener('load', function () {
       method: 'GET'
     };
     console.log("Consultando mi usuario...");
-    fetch(urlUsuario+'/'+token, settings)
+    fetch(urlUsuario+'/'+user, settings)
       .then(response => response.json())
       .then(data => {
         console.log("Email de usuario:");
@@ -74,7 +75,12 @@ window.addEventListener('load', function () {
 
   function consultarOdontologos() {
     const settings = {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Origin': 'http://127.0.0.1:5500',
+          Authorization: token
+      }
     };
     console.log("Consultando odontologos...");
     fetch(urlOdontologos, settings)
@@ -136,7 +142,12 @@ window.addEventListener('load', function () {
         const payload = {};
 
         const settings = {
-          method: 'GET'
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
+          }
         }
         const form = document.querySelector('#div_odontologo');
         fetch(url,settings)
@@ -182,7 +193,10 @@ window.addEventListener('load', function () {
             const url = `${urlOdontologos}/${id}`
 
             const settingsCambio = {
-              method: 'DELETE'
+              method: 'DELETE',
+              headers: {
+                Authorization: token
+              }
             }
             fetch(url, settingsCambio)
               .then(response => {
@@ -231,6 +245,8 @@ window.addEventListener('load', function () {
           method: id ? 'PUT' : 'POST',
           headers: {
               'Content-Type': 'application/json',
+              'Origin': 'http://127.0.0.1:5500',
+              Authorization: token
           },
           body: JSON.stringify(odontologo)
         }
